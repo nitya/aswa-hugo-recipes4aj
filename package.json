@@ -110,7 +110,7 @@
     "@playwright/test": "^1.17.1"
   },
   "scripts": {
-		"test": "echo \"Delegating testing to Playwright\" "
+		"build": "echo \"Empty build for now ...\" "
   },
   "repository": {
     "type": "git",
