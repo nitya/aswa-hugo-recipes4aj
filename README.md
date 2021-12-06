@@ -45,7 +45,7 @@ This creates the folder with the blog source and scaffolds out the
 ```
 $ hugo new site blog
 
-Congratulations! Your new Hugo site is created in <..>/aswa-hugo-demo/blog.
+Congratulations! Your new Hugo site is created in <..>/blog.
 
 Just a few more steps and you're ready to go:
 
@@ -95,7 +95,7 @@ I'm going to try using the [hugo-cookbook](https://github.com/deranjer/hugo-cook
 ```
 // Make sure you are in the blog directory
 $ pwd
-~/aswa-hugo-demo/blog
+<..>/blog
 
 // Add the theme 
 $ git submodule add https://github.com/deranjer/hugo-cookbook.git themes/cookbook
@@ -124,7 +124,7 @@ hugo v0.88.1+extended darwin/amd64 BuildDate=unknown
 
 Built in 25 ms
 Watching for changes in ~/aswa-hugo-demo/blog/themes/cookbook/{archetypes,exampleSite,layouts,static}
-Watching for config changes in ~/aswa-hugo-demo/blog/themes/cookbook/exampleSite/config.toml
+Watching for config changes in <..>/blog/themes/cookbook/exampleSite/config.toml
 Environment: "development"
 Serving pages from memory
 Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
@@ -144,7 +144,7 @@ Follow the [instructions for your theme setup](https://github.com/deranjer/hugo-
 
 ```
 // Return to the blog root directory
-$ cd ~/aswa-hugo-demo/blog/
+$ cd <..>/blog/
 
 // Copy the example site's config.toml
 $ cp themes/cookbook/exampleSite/config.toml . 
@@ -264,6 +264,67 @@ Once that action shows the green check-mark - visit the deployed site again - et
 ![Screenshot of Azure Static Web Site deployed when actions completes](img/aswa-updated.png)
 
 Now that's what I can .. "a wrap!"
+
+---
+
+### 2.11 Integrate Playwright E2E Testing Workflow
+
+[Playwright](https://playwright.dev/) is an open-source framework that enables reliable end-to-end testing for modern web applications. You can use [`create-playwright`](https://github.com/microsoft/create-playwright) to initialize and configure Playwright with a single command - a handy way to setup end-to-end testing within an existing project. 
+
+One benefit of this workflow is that it also creates (optionally) the GitHub actions workflow required to initialize and run those tests on a required cadence (e.g., with every commit).
+
+Here's how we set this up.
+
+```
+$ cd blog/
+$ npm init playwright   
+
+Need to install the following packages:
+  create-playwright
+Ok to proceed? (y) y
+Getting started with writing end-to-end tests with Playwright:
+Initializing project in '.'
+✔ Do you want to use TypeScript or JavaScript? · JavaScript
+✔ Where to put your end-to-end tests? · tests
+✔ Add a GitHub Actions workflow? (Y/n) · true
+Initializing NPM project (npm init -y)…
+Wrote to ../aswa-hugo-recipes4aj/package.json:
+...
+...
+
+Installing Playwright Test (npm install --save-dev @playwright/test)…
+
+added 191 packages, and audited 192 packages in 7s
+
+16 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Downloading browsers (npx playwright install)…
+Writing playwright.config.js.
+Writing .github/workflows/playwright.yml.
+Writing tests/example.spec.js.
+Writing package.json.
+✔ Success! Created a Playwright Test project at <..>/aswa-hugo-recipes4aj
+```
+
+The project is now configured to run Playwright tests. The default test file will be found in `tests/example.spec.js` - I updated it to reflect the current site as follows:
+
+```js
+// @ts-check
+const { test, expect } = require('@playwright/test');
+
+test('basic test', async ({ page }) => {
+  await page.goto('https://bit.ly/recipes-for-aj');
+  await expect(page).toHaveTitle("Recipes 4 AJ");
+
+  await page.locator('text=View Recipe').click();
+});
+```
+
+This basic test opens the static web app site, checks that the title metadata is set to "Recipes 4 AJ" and clicks on the "View Recipe" button associated with the default card.
+
+Commit the changes to the repo and let's see what happens.
 
 ---
 
