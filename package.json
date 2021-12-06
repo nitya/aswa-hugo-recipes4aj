@@ -1,0 +1,21 @@
+{
+  "name": "aswa-hugo-recipes4aj",
+  "version": "1.0.0",
+  "description": "I've used Hugo in the past to setup static blog sites on GitHub Pages like [this one](https://bit.ly/learn-playwright)) using the Cupper theme (as documened in [this gist](https://gist.github.com/nitya/51905082cfad7682bdf31bc8a36f5553)). But I wanted to explore using Hugo with [Azure Static Web Sites](https://docs.microsoft.com/en-us/azure/static-web-apps/) for two reasons:  * Take advantage of [built-in benefits](https://docs.microsoft.com/en-us/azure/static-web-apps/overview#key-features) like GitHub CI/CD, free SSL certifications and easy serverless integrations with Azure Functions.  * Have a static web app that I could use as a sandbox to explore other web development tools and technologies including end-to-end testing with [Playwright](https://playwright.dev) using a blogging framework I was familiar with.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitya/aswa-hugo-recipes4aj.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nitya/aswa-hugo-recipes4aj/issues"
+  },
+  "homepage": "https://github.com/nitya/aswa-hugo-recipes4aj#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.17.1"
+  }
+}
