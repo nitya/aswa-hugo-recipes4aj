@@ -53,10 +53,9 @@ jobs:
 
       - name: Run Playwright Tests        
         continue-on-error: false
-        working-directory: e2e       
+        working-directory: testing       
         run: |   
-          cd testing
-          npx playwright test --reporter=html --config playwright.config.js
+          npx playwright test e2e --reporter=html --config playwright.config.js
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
