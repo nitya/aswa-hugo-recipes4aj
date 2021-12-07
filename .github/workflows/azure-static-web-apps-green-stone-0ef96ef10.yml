@@ -55,6 +55,7 @@ jobs:
         continue-on-error: false
         working-directory: e2e       
         run: |   
+          cd testing
           npx playwright test --reporter=html --config playwright.config.js
 
   close_pull_request_job:
