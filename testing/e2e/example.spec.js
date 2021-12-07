@@ -5,5 +5,5 @@ test('basic test', async ({ page }) => {
   await page.goto('https://bit.ly/recipes-for-aj');
   await expect(page).toHaveTitle("Recipes 4 AJ");
 
-  await page.locator('text=View Recipe').click();
+  await page.locator('text=Tags').click();
 });

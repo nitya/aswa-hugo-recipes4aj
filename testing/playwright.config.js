@@ -72,7 +72,7 @@ const config = {
     },
 
 
-    /* Test against mobile viewports. */
+    /* Test against mobile viewports. *
     {
       name: 'Mobile Chrome',
       use: {
@@ -86,6 +86,7 @@ const config = {
         ...devices['iPhone 12'],
      },
     },
+    */
 
     /* Test against branded browsers. */
     // {
